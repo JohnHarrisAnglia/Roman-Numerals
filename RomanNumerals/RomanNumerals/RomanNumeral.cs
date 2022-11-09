@@ -42,8 +42,7 @@
             {
                 result += ConvertDigit(input, startingNumeral, middleNumeral);
             }
-            else
-            if (input >= 5 && input < 9)
+            else if (input >= 5 && input < 9)
             {
                 result += middleNumeral;
                 result += ConvertDigit(input - 5, startingNumeral);
