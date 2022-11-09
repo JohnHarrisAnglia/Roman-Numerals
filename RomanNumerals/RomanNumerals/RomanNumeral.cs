@@ -21,22 +21,22 @@
 
             for (int i = splitDigits.Count() - 1; i >= 0; i--)
             {
-                if (splitDigits.Count() - i - 1 == 0)
+                if (IsUnits(splitDigits.Count(), i))
                 {
                     result = ApplyNumeral(splitDigits[i], numerals[1], numerals[5], numerals[10]);
                 }
 
-                if (splitDigits.Count() - i - 1 == 1)
+                if (IsTens(splitDigits.Count(), i))
                 {
                     result = ApplyNumeral(splitDigits[i], numerals[10], numerals[50], numerals[100]) + result;
                 }
 
-                if (splitDigits.Count() - i - 1 == 2)
+                if (IsHundreds(splitDigits.Count(), i))
                 {
                     result = ApplyNumeral(splitDigits[i], numerals[100], numerals[500], numerals[1000]) + result;
                 }
 
-                if (splitDigits.Count() - i - 1 == 3)
+                if (IsThousands(splitDigits.Count(), i))
                 {
                     result = ApplyNumeral(splitDigits[i], numerals[1000]) + result;
                 }
@@ -45,18 +45,18 @@
             return result;
         }
 
-        private string ApplyNumeral(int input, string startingNumeral, string middlenumeral = "", string endingNumeral = "")
+        private string ApplyNumeral(int input, string startingNumeral, string middleNumeral = "", string endingNumeral = "")
         {
             var result = string.Empty;
 
             if (input < 5)
             {
-                result += ConvertDigit(input, startingNumeral, middlenumeral);
+                result += ConvertDigit(input, startingNumeral, middleNumeral);
             }
             else
             if (input >= 5 && input < 9)
             {
-                result += middlenumeral;
+                result += middleNumeral;
                 result += ConvertDigit(input - 5, startingNumeral);
             }
             else
@@ -87,6 +87,26 @@
             }
 
             return result;
+        }
+
+        private static bool IsUnits(int inputLength, int i)
+        {
+            return inputLength - i - 1 == 0;
+        }
+
+        private static bool IsTens(int inputLength, int i)
+        {
+            return inputLength - i - 1 == 1;
+        }
+
+        private static bool IsHundreds(int inputLength, int i)
+        {
+            return inputLength - i - 1 == 2;
+        }
+
+        private static bool IsThousands(int inputLength, int i)
+        {
+            return inputLength - i - 1 == 3;
         }
     }
 }
