@@ -53,7 +53,9 @@ namespace RomanNumerals.Test
 
         [TestMethod]
         [DataRow(10, "X")]
-        public void RomanNumeral_Convert_Should_Convert_10(int input, string expectedResult)
+        [DataRow(15, "XV")]
+        [DataRow(19, "XIX")]
+        public void RomanNumeral_Convert_Should_Convert_Tens(int input, string expectedResult)
         {
             RomanNumeral romanNumerals = new RomanNumeral();
 
@@ -65,6 +67,36 @@ namespace RomanNumerals.Test
         [TestMethod]
         [DataRow(9, "IX")]
         public void RomanNumeral_Convert_Should_Convert_9(int input, string expectedResult)
+        {
+            RomanNumeral romanNumerals = new RomanNumeral();
+
+            var result = romanNumerals.Convert(input);
+
+            Assert.AreEqual(expectedResult, result);
+        }
+
+        [TestMethod]
+        [DataRow(100, "C")]
+        [DataRow(150, "CL")]
+        [DataRow(155, "CLV")]
+        [DataRow(500, "D")]
+        [DataRow(900, "CM")]
+        [DataRow(990, "CMXC")]
+        [DataRow(569, "DLXIX")]
+        public void RomanNumeral_Convert_Should_Convert_Hundreds(int input, string expectedResult)
+        {
+            RomanNumeral romanNumerals = new RomanNumeral();
+
+            var result = romanNumerals.Convert(input);
+
+            Assert.AreEqual(expectedResult, result);
+        }
+
+        [TestMethod]
+        [DataRow(1000, "M")]       
+        [DataRow(1934, "MCMXXXIV")] 
+        [DataRow(2000, "MM")]
+        public void RomanNumeral_Convert_Should_Convert_Thousands(int input, string expectedResult)
         {
             RomanNumeral romanNumerals = new RomanNumeral();
 
