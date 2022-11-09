@@ -2,17 +2,6 @@
 {
     public class RomanNumeral
     {
-        Dictionary<int, string> numerals = new Dictionary<int, string>()
-        {
-            {1, "I" },
-            {5, "V" },
-            {10,"X" },
-            {50,"L"},
-            {100, "C" },
-            {500, "D" },
-            {1000, "M" }
-        };
-
         public string Convert(int input)
         {
             var result = string.Empty;
@@ -23,22 +12,22 @@
             {
                 if (IsUnits(splitDigits.Count(), i))
                 {
-                    result = ApplyNumeral(splitDigits[i], numerals[1], numerals[5], numerals[10]);
+                    result = ApplyNumeral(splitDigits[i], Numerals.GetNumeral(1), Numerals.GetNumeral(5), Numerals.GetNumeral(10));
                 }
 
                 if (IsTens(splitDigits.Count(), i))
                 {
-                    result = ApplyNumeral(splitDigits[i], numerals[10], numerals[50], numerals[100]) + result;
+                    result = ApplyNumeral(splitDigits[i], Numerals.GetNumeral(10), Numerals.GetNumeral(50), Numerals.GetNumeral(100)) + result;
                 }
 
                 if (IsHundreds(splitDigits.Count(), i))
                 {
-                    result = ApplyNumeral(splitDigits[i], numerals[100], numerals[500], numerals[1000]) + result;
+                    result = ApplyNumeral(splitDigits[i], Numerals.GetNumeral(100), Numerals.GetNumeral(500), Numerals.GetNumeral(1000)) + result;
                 }
 
                 if (IsThousands(splitDigits.Count(), i))
                 {
-                    result = ApplyNumeral(splitDigits[i], numerals[1000]) + result;
+                    result = ApplyNumeral(splitDigits[i], Numerals.GetNumeral(1000)) + result;
                 }
             }
 
